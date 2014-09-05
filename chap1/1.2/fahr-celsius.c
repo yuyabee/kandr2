@@ -1,16 +1,16 @@
 #include <stdio.h>
 
-int celsius(int fahr) {
-	return 5 * (fahr - 32) / 9;
+float celsius(float fahr) {
+	return 5.0 * (fahr - 32.0) / 9.0;
 }
 
 int main() {
-	int fahr = 0;
+	float fahr = 0;
 	int step = 20;
 
 	printf("fahr\tcelsius\n");
 	while (fahr <= 300) {
-		printf("%3d\t%6d\n", fahr, celsius(fahr));
+		printf("%3.1f\t%6.1f\n", fahr, celsius(fahr));
 		fahr = fahr + step;
 	}
 }
