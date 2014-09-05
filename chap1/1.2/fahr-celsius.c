@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 float celsius(float fahr) {
-	return 5.0 * (fahr - 32.0) / 9.0;
+	return (5.0 / 9.0) * (fahr - 32.0);
 }
 
 int main() {
