@@ -10,7 +10,7 @@ int main() {
 
 	printf("fahr\tcelsius\n");
 	while (fahr <= 300) {
-		printf("%d\t%d\n", fahr, celsius(fahr));
+		printf("%3d\t%6d\n", fahr, celsius(fahr));
 		fahr = fahr + step;
 	}
 }
