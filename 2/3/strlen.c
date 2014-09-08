@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int my_strlen(char string[]);
+int my_strlen(const char string[]);
 
 int main() {
 	char test[20] = "hello world";
@@ -10,7 +10,7 @@ int main() {
 	return 0;
 }
 
-int my_strlen(char s[]) {
+int my_strlen(const char s[]) {
 	int i;
 
 	while (s[i] != '\0')
