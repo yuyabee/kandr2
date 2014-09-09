@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define MAXOP   100
 #define NUMBER  '0'
@@ -33,6 +34,16 @@ int main()
 				op2 = pop();
 				if (op2 != 0.0)
 					push(pop() / op2);
+				else
+					printf("error: zero divisor\n");
+				break;
+			case '%':
+				op2 = pop();
+				if (op2 != 0.0)
+					// this doesn't work since the numbers are double
+					// push(pop() % op2);
+					// instead, use <math.h> fmod
+					push(fmod(pop(), op2));
 				else
 					printf("error: zero divisor\n");
 				break;
