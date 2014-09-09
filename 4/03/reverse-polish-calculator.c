@@ -18,6 +18,7 @@ int main()
 	while ((type = getop(s)) != EOF) {
 		switch (type) {
 			case NUMBER:
+				//printf("%g\n", atof(s));
 				push(atof(s));
 				break;
 			case '+':
