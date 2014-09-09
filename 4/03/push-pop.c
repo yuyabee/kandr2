@@ -18,7 +18,23 @@ double pop(void)
 	if (sp > 0)
 		return val[--sp];
 	else {
-		printf("error: stack empty\n");
+		printf("Error: stack empty\n");
 		return 0.0;
 	}
+}
+
+void showStat(void)
+{
+	if (sp > 0)
+		printf("Stack stat: %g\n", val[sp - 1]);
+	else
+		printf("error: stack empty\n");
+}
+
+void showTop(void)
+{
+	if (sp > 0)
+		printf("Top of the Stack is: %g\n", val[sp - 1]);
+	else
+		printf("error: stack empty\n");
 }

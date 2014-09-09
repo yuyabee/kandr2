@@ -8,6 +8,8 @@
 int getop(char []);
 void push(double);
 double pop(void);
+void showTop(void);
+void showStat(void);
 
 int main()
 {
@@ -48,8 +50,12 @@ int main()
 				else
 					printf("error: zero divisor\n");
 				break;
+			// print top element of the stack
+			case 'T':
+				showTop();
+				break;
 			case '\n':
-				printf("\t%.8g\n", pop());
+				showStat();
 				break;
 			default:
 				printf("error: unknown command %s\n", s);
