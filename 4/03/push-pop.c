@@ -38,3 +38,15 @@ void showTop(void)
 	else
 		printf("error: stack empty\n");
 }
+
+void swapTopStack(void)
+{
+	if (sp > 0) {
+		double tmp1, tmp2;
+		tmp1 = pop();
+		tmp2 = pop();
+		push(tmp1);
+		push(tmp2);
+	} else
+		printf("error: elements in the stack must be more than to 2 to swap\n");
+}

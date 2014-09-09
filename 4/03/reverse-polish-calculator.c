@@ -10,6 +10,7 @@ void push(double);
 double pop(void);
 void showTop(void);
 void showStat(void);
+void swapTopStack(void);
 
 int main()
 {
@@ -53,6 +54,9 @@ int main()
 			// print top element of the stack
 			case 'T':
 				showTop();
+				break;
+			case 'S':
+				swapTopStack();
 				break;
 			case '\n':
 				showStat();
