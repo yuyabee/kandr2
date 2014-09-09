@@ -50,3 +50,8 @@ void swapTopStack(void)
 	} else
 		printf("error: elements in the stack must be more than to 2 to swap\n");
 }
+
+void clearStack(void)
+{
+	sp = 0;
+}

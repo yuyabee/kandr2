@@ -11,6 +11,7 @@ double pop(void);
 void showTop(void);
 void showStat(void);
 void swapTopStack(void);
+void clearStack(void);
 
 int main()
 {
@@ -57,6 +58,9 @@ int main()
 				break;
 			case 'S':
 				swapTopStack();
+				break;
+			case 'C':
+				clearStack();
 				break;
 			case '\n':
 				showStat();
