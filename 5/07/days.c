@@ -10,7 +10,7 @@ int day_of_year(int year, int month, int day)
   int i, leap;
 
   // when the statements are true, leap = 1, otherwise leap = 0
-  leap = year%4 == 0 && year%100 != 0 || year%400 == 0;
+  leap = year%4 == 0 && (year%100 != 0 || year%400 == 0);
   for (i = 1; i < month; i++)
     day += daytab[leap][i];
   return day;
@@ -20,7 +20,7 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
 {
   int i, leap;
 
-  leap = year%4 == 0 && year%100 != 0 || year%400 == 0;
+  leap = year%4 == 0 && (year%100 != 0 || year%400 == 0);
   for (i = 1; yearday > daytab[leap][i]; i++)
     yearday -= daytab[leap][i];
   *pmonth = i;
