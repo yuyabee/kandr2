@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
 
 void groupprint(struct gnode *p)
 {
-  if (p == NULL) {
+  if (p != NULL) {
     printf("%4d %s\n", p->count, p->word);
     treeprint(*p->list);
     groupprint(p->next);
@@ -76,7 +76,7 @@ void groupprint(struct gnode *p)
 struct gnode *
 addgroup(struct gnode *g, struct tnode *t)
 {
-  if (g == NULL) {
+  if (g != NULL) {
     addgroup(g, t->left);
     addgroupbase(g, t);
     addgroup(g, t->right);
@@ -88,7 +88,6 @@ addgroup(struct gnode *g, struct tnode *t)
 struct gnode *
 addgroupbase(struct gnode *g, struct tnode *t)
 {
-  int cond = 0;
   char *str = my_strdup(t->word);
   str[GROUPINGBASE] = '\0';
 
@@ -187,13 +186,13 @@ char bufp = 0;
 
 int getch(void)
 {
-	return (bufp > 0) ? buf[--bufp] : getchar();
+  return (bufp > 0) ? buf[--bufp] : getchar();
 }
 
 void ungetch(int c)
 {
-	if (bufp >= BUFSIZE)
-		printf("ungetch: too many characters\n");
-	else
-		buf[bufp++] = c;
+  if (bufp >= BUFSIZE)
+    printf("ungetch: too many characters\n");
+  else
+    buf[bufp++] = c;
 }
