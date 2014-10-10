@@ -33,7 +33,11 @@ int main()
 
   undef("test2");
 
-  printf("test2 should not exist 0: %s\n", lookupdefn("test2"));
+  printf("Name: %s, Defn: %s\n", testNames[1], lookupdefn("test2"));
+
+  install("test1", "test1value modified");
+  printf("Name: %s, Defn: %s\n", testNames[0], lookupdefn("test1"));
+
   return 0;
 }
 
@@ -54,7 +58,6 @@ lookup(char *s)
 
   for (np = hashtab[hash(s)]; np != NULL; np = np->next)
     if (strcmp(s, np->name) == 0) {
-      printf("s: %s\n", s);
       return np;
     }
   return NULL;
@@ -92,6 +95,18 @@ install(char *name, char *defn)
 
 void undef(char *name)
 {
-  struct nlist *np = lookup(name);
-  np->name = np->defn = NULL;
+  struct nlist *pre, *p;
+  unsigned hashval = hash(name);
+
+  for (pre = p = hashtab[hashval]; p != NULL; pre = p, p = p->next)
+    if (strcmp(name, p->name) == 0) {
+      if (pre == p)
+        hashtab[hashval] = p->next;
+      else
+        pre->next = p->next;
+      free(p->name);
+      free(p->defn);
+      free(p);
+      break;
+    }
 }
