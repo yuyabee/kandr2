@@ -5,6 +5,7 @@
 
 #define MAXWORD 100
 #define MAXGROUPWORD 100
+#define GROUPINGBASE 6
 
 int getch(void);
 void ungetch(int c);
@@ -28,26 +29,27 @@ struct gnode {
   int count;
   struct tnode *list[MAXGROUPWORD];
   struct gnode *next;
-}
+};
 
 struct tnode *addtree(struct tnode *, char *);
 void treeprint(struct tnode *);
 struct tnode *talloc(void);
 
-struct gnode *addgroup(struct gnode *, char *);
+struct gnode *addgroup(struct gnode *, struct tnode *);
+struct gnode *addgroupbase(struct gnode *, struct tnode *);
 void groupprint(struct gnode *);
 struct gnode *galloc(void);
 
-int main() {
+int main(int argc, char *argv[]) {
   struct tnode *troot = NULL;
   struct gnode *groot = NULL;
   char word[MAXWORD];
 
   while (getword(word, MAXWORD) != EOF)
     if (isalpha(word[0]))
-      root = addtree(root, word);
-  println("Printing tree root: ");
-  treeprint(root);
+      troot = addtree(troot, word);
+  printf("Printing tree root: ");
+  treeprint(troot);
 
   groot = galloc();
   groot->word = "";
@@ -56,7 +58,7 @@ int main() {
   groot->next = NULL;
 
   addgroup(groot, troot);
-  println("Group print: ");
+  printf("Group print: ");
   groupprint(groot);
 
   return 0;
@@ -65,25 +67,49 @@ int main() {
 void groupprint(struct gnode *p)
 {
   if (p == NULL) {
+    printf("%4d %s\n", p->count, p->word);
+    treeprint(*p->list);
+    groupprint(p->next);
   }
 }
 
 struct gnode *
-addgroup(struct gnode *p, char *word)
+addgroup(struct gnode *g, struct tnode *t)
 {
-  int cond;
-
-  if (p != NULL) {
-    p = galloc();
-    p->word = strdup(word);
-    p->count = 1;
+  if (g == NULL) {
+    addgroup(g, t->left);
+    addgroupbase(g, t);
+    addgroup(g, t->right);
   }
+
+  return g;
+}
+
+struct gnode *
+addgroupbase(struct gnode *g, struct tnode *t)
+{
+  int cond = 0;
+  char *str = my_strdup(t->word);
+  str[GROUPINGBASE] = '\0';
+
+  if (g == NULL) {
+    g = galloc();
+    g->word = str;
+    g->count = 1;
+    g->list[0] = t;
+    g->next = NULL;
+  } else if ((strncmp(g->word, t->word, GROUPINGBASE)) == 0) {/* using strncmp to compare only arbitary number of characters */
+    g->list[g->count] = t;
+    g->count++;
+  } else
+    g->next = addgroupbase(g->next, t);
+  return g;
 }
 
 struct gnode *
 galloc(void)
 {
-  return (gnode *) malloc(sizeof(gnode));
+  return (struct gnode *) malloc(sizeof(struct gnode));
 }
 
 void treeprint(struct tnode *p)
