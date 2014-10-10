@@ -73,7 +73,7 @@ void groupprint(struct gnode *p)
   }
 }
 
-struct gnode *
+  struct gnode *
 addgroup(struct gnode *g, struct tnode *t)
 {
   if (g != NULL) {
@@ -85,7 +85,7 @@ addgroup(struct gnode *g, struct tnode *t)
   return g;
 }
 
-struct gnode *
+  struct gnode *
 addgroupbase(struct gnode *g, struct tnode *t)
 {
   char *str = my_strdup(t->word);
@@ -105,7 +105,7 @@ addgroupbase(struct gnode *g, struct tnode *t)
   return g;
 }
 
-struct gnode *
+  struct gnode *
 galloc(void)
 {
   return (struct gnode *) malloc(sizeof(struct gnode));
@@ -120,7 +120,7 @@ void treeprint(struct tnode *p)
   }
 }
 
-struct tnode *
+  struct tnode *
 addtree(struct tnode *p, char *w)
 {
   int cond;
@@ -139,13 +139,13 @@ addtree(struct tnode *p, char *w)
   return p;
 }
 
-struct tnode *
+  struct tnode *
 talloc(void)
 {
   return (struct tnode *) malloc(sizeof(struct tnode));
 }
 
-char *
+  char *
 my_strdup(char *s)
 {
   char *p;
