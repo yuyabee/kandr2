@@ -7,12 +7,13 @@ int main(int argc, char *argv[])
   if (argc == 1)
     filecopy(stdin, stdout);
   else {
-    if ((fp = fopen(*++argv, "r")) == NULL)
-      printf("cat: couldn't open the file %s\n", *argv);
-    else {
-      filecopy(fp, stdout);
-      fclose(fp);
-    }
+    while (--argc > 0)
+      if ((fp = fopen(*++argv, "r")) == NULL)
+        printf("cat: couldn't open the file %s\n", *argv);
+      else {
+        filecopy(fp, stdout);
+        fclose(fp);
+      }
   }
   return 0;
 }
