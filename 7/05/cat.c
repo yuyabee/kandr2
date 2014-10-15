@@ -8,9 +8,10 @@ int main(int argc, char *argv[])
     filecopy(stdin, stdout);
   else {
     while (--argc > 0)
-      if ((fp = fopen(*++argv, "r")) == NULL)
+      if ((fp = fopen(*++argv, "r")) == NULL) {
         printf("cat: couldn't open the file %s\n", *argv);
-      else {
+        return 1;
+      } else {
         filecopy(fp, stdout);
         fclose(fp);
       }
