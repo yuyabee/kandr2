@@ -37,7 +37,7 @@ void find_from_file(char *pattern, char *filename)
   if ((fp = fopen(filename, "r")) != NULL) {
     while (fgets(line, MAXLINE, fp) != NULL) {
       if ((strstr(line, pattern) != NULL))
-        printf("In %s: line: %d %s", filename, count, line);
+        printf("In %s: line: %d: %s", filename, count, line);
       count++;
     }
     fclose(fp);
