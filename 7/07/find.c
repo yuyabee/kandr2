@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
   // ./a.out pattern file_names
   char *prog = argv[0];
   char *pat = argv[1];
-  void find_from_file(char *, char *);
+  void find_from_file(char *, char *, char *);
 
   if (argc == 2) {
     // temp
@@ -21,13 +21,13 @@ int main(int argc, char *argv[])
     argv++;
     argv++;
     while (--argc > 0)
-      find_from_file(pat, *argv++);
+      find_from_file(prog, pat, *argv++);
   }
 
   return 0;
 }
 
-void find_from_file(char *pattern, char *filename)
+void find_from_file(char *prog, char *pattern, char *filename)
 {
   FILE *fp;
   char line[MAXLINE];
@@ -41,7 +41,7 @@ void find_from_file(char *pattern, char *filename)
     }
     fclose(fp);
   } else {
-    fprintf(stderr, "find: couldn't read file: %s\n", filename);
+    fprintf(stderr, "%s: couldn't read file: %s\n", prog, filename);
     exit(0);
   }
 }
