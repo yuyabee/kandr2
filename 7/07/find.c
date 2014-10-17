@@ -6,7 +6,6 @@
 
 //Modify the pattern find_from_fileing program of Chapter 5 to take its input from a set of named files or, if no files are named as arguments, from the standard input. Should the file name be printed when a matching line is found?
 
-
 int main(int argc, char *argv[])
 {
   // ./a.out pattern file_names
