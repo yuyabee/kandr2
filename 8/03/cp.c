@@ -26,7 +26,11 @@ int main(int argc, char *argv[])
   }
 
   if ((n = read(f1, buff, BUFSIZ)) > 0)
-    write(f2, buff, n);
+    if (write(f2, buff, n) != n) {
+      printf("cp: something went wrong while writing to %s\n", argv[2]);
+      exit(1);
+    }
 
-  return 0;
+  // exit will close the files opened during the execution
+  exit(0);
 }
