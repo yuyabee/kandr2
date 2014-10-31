@@ -1,4 +1,4 @@
-#include <fcntl.h>
+#include <stdlib.h>
 #include "syscalls.c"
 
 #define PERMS 0666
