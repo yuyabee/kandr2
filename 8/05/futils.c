@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <fcntl.h>
-#include "unistd.h"
+#include <unistd.h>
 
 #ifndef NULL
   #define NULL      0
@@ -17,9 +17,6 @@ typedef struct _iobuf {
   int   fd;     /* file descriptor */
 } FILE;
 
-FILE _iob[OPEN_MAX] = {
-};
-
 extern FILE _iob[OPEN_MAX];
 
 #define stdin   (&_iob[0])
@@ -33,6 +30,13 @@ enum _flags {
   _EOF    = 010,
   _ERR    = 020
 };
+
+FILE _iob[OPEN_MAX] = { /* stdin stdout stderr */
+  {0, (char *) 0, (char *) 0, _READ, 0},
+  {0, (char *) 0, (char *) 0, _WRITE, 1},
+  {0, (char *) 0, (char *) 0, _WRITE | _UNBUF, 2}
+};
+
 
 int _fillbuf(FILE *);
 int _flushbuf(int, FILE *);
