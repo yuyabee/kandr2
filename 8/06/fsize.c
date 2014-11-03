@@ -29,7 +29,9 @@ void fsize(char *name)
   }
   if ((stbuf.st_mode & S_IFMT) == S_IFDIR)
     dirwalk(name, fsize);
-  printf("%8lld %s\n", stbuf.st_size, name);
+  // __uint32_t	st_gen;			/* file generation number */
+	// uid_t		st_uid;			/* [XSI] User ID of the file */
+  printf("%8lld uid: %d %s\n", stbuf.st_size, stbuf.st_uid, name);
 }
 
 #define MAX_PATH 1024
