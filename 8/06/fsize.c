@@ -3,9 +3,8 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <dirent.h>
+#include "dirent.h"
 
-int stat(char *, struct stat *);
 void dirwalk(char *, void (*fcn)(char *));
 
 void fsize(char *);
@@ -30,7 +29,7 @@ void fsize(char *name)
   }
   if ((stbuf.st_mode & S_IFMT) == S_IFDIR)
     dirwalk(name, fsize);
-  printf("%8ld %s\n", stbuf.st_size, name);
+  printf("%8lld %s\n", stbuf.st_size, name);
 }
 
 #define MAX_PATH 1024

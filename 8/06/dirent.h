@@ -1,11 +1,11 @@
 #define NAME_MAX 14
 
-typedef struct  {
+typedef struct {
   long ino; // inode
   char name[NAME_MAX+1]; // dirname + \0
 } Dirent;
 
-typedef struct  {
+typedef struct {
   int fd;
   Dirent d;
 } DIR;
